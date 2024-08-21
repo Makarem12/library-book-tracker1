@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function Form() {
+function Form({ addBook }) {
   const [bookDetails, setBookDetails] = useState({});
   const [showToast, setShowToast] = useState(false);
 
@@ -14,6 +14,7 @@ function Form() {
       isbn: e.target.isbn.value,
     };
     setBookDetails(newBook);
+    addBook(newBook); // Add the new book to the list
     setShowToast(true);
 
     // Reset form fields
