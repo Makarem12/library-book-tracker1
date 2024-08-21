@@ -1,7 +1,10 @@
 import Image from "next/image";
+import { useContext } from "react";
+import { ThemeContext } from "../context/theme";
 function Header(){
+  const {isDarktheme, toggleThemeHandler} = useContext(ThemeContext)
     return(
-        <nav class="flex items-center justify-between flex-wrap bg-amber-800 p-6">
+        <nav class="flex items-center justify-between flex-wrap bg-amber-800 p-6 dark:bg-black">
   <div class="flex items-center flex-shrink-0 text-white mr-6">
 <Image
 src="/assets/download.png"
@@ -29,7 +32,7 @@ alt="book logo"
       </a>
     </div>
     <div>
-      <a href="#" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Contact Us</a>
+      <button onClick={toggleThemeHandler} href="#" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Toggle theme</button>
     </div>
   </div>
 </nav>
