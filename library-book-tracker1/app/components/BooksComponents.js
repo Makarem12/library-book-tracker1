@@ -13,7 +13,7 @@ function BooksList({ books }) {
           sortedBooks.map((book, index) => (
             <li
               key={index}
-              className="bg-amber-800 text-white p-4 mb-2 rounded shadow-md"
+              className="bg-amber-800 text-white p-4 mb-2 rounded shadow-md dark:bg-black dark:border-solid dark:border-2 dark:border-white-600"
             >
               <p><strong>Title:</strong> {book.title}</p>
               <p><strong>Author:</strong> {book.author}</p>

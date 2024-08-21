@@ -27,8 +27,8 @@ function Form({ addBook }) {
   };
 
   return (
-    <div className="max-w-lg mx-auto">
-      <form onSubmit={submitHandler} className="bg-white p-8 shadow-md rounded-lg">
+    <div className="max-w-lg mx-auto dark:bg-black">
+      <form onSubmit={submitHandler} className="bg-white dark:bg-black p-8 shadow-md rounded-lg dark:border-solid dark:border-2 dark:border-white-600">
         <div className="mb-4">
           <label htmlFor="title" className="block text-gray-700 text-sm font-bold mb-2">
             Book Title
@@ -110,7 +110,7 @@ function Form({ addBook }) {
       </form>
 
       {showToast && (
-        <div className="fixed bottom-4 right-4 bg-amber-800 text-white px-4 py-2 rounded shadow-lg">
+        <div className="fixed bottom-4 right-4 bg-amber-800 text-white px-4 py-2 rounded shadow-lg dark:bg-black dark:border-solid dark:border-2 dark:border-white-600">
           <p><strong>Last Added Book:</strong></p>
           <p>Title: {bookDetails.title}</p>
           <p>Author: {bookDetails.author}</p>
