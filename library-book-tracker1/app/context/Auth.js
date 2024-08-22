@@ -1,46 +1,42 @@
-import { createContext, useState} from "react";
+import { createContext, useState } from "react";
 import axios from "axios";
 
-    // 1. create the context
-    
-    export const AuthContext = createContext();
-    
-    //2. create the context wrapper
-    
-    export default function AuthWrapper({children}) {
-    
-    const [globalLoginState, setGlobalLoginState] = useState({
-    
+export const AuthContext = createContext();
+
+export default function AuthWrapper({ children }) {
+  const [globalLoginState, setGlobalLoginState] = useState({
     tokens: null,
-    
-    login
-    
-    })
-    
-    async function login(userInfo) {
-    
-    // send req to backend
-    
-    const url = 'http://127.0.0.1:8000/api/token/'
-    
-    const res = await axios.post(url, userInfo)
-    
+    login,
+    logout
+  });
+
+  async function login(userInfo) {
+    const url = 'http://127.0.0.1:8000/api/token/';
+    try {
+      const res = await axios.post(url, userInfo);
+      setGlobalLoginState({
+        tokens: res.data,
+        login,
+        logout
+      });
+    } catch (error) {
+      console.error("Login failed", error);
+      // Handle error state
+    }
+  }
+
+  function logout() {
+    // Clear tokens and update state
     setGlobalLoginState({
-    
-    tokens : res.data,
-    
-    login
-    })
-    
-    }
-    
-    return (
-    <>
+      tokens: null,
+      login,
+      logout
+    });
+  }
+
+  return (
     <AuthContext.Provider value={globalLoginState}>
-    {children}
-    
+      {children}
     </AuthContext.Provider>
-    
-    </>
-    )
-    }
+  );
+}
